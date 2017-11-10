@@ -1,4 +1,4 @@
-package lv.vea.math.modeling.tasks.first;
+package lv.vea.design.patterns.tasks.first;
 
 import java.util.Arrays;
 

@@ -1,15 +1,14 @@
-package lv.vea.math.modeling.tasks.second;
+package lv.vea.design.patterns.tasks.second;
 
+import static lv.vea.design.patterns.tasks.second.Search.find;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
-import static lv.vea.math.modeling.tasks.second.Search.find;
-
 import org.junit.Test;
 
-import lv.vea.math.modeling.tasks.second.exceptions.EmptyArrayException;
-import lv.vea.math.modeling.tasks.second.exceptions.UnsortedArrayException;
+import lv.vea.design.patterns.tasks.second.exceptions.EmptyArrayException;
+import lv.vea.design.patterns.tasks.second.exceptions.UnsortedArrayException;
 
 public class SearchTest {
 

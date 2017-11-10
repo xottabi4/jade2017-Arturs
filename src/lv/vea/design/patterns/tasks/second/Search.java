@@ -1,7 +1,7 @@
-package lv.vea.math.modeling.tasks.second;
+package lv.vea.design.patterns.tasks.second;
 
-import lv.vea.math.modeling.tasks.second.exceptions.EmptyArrayException;
-import lv.vea.math.modeling.tasks.second.exceptions.UnsortedArrayException;
+import lv.vea.design.patterns.tasks.second.exceptions.EmptyArrayException;
+import lv.vea.design.patterns.tasks.second.exceptions.UnsortedArrayException;
 
 public class Search {
 
