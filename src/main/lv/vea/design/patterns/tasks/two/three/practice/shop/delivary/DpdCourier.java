@@ -9,9 +9,9 @@ import java.util.List;
 /**
  * Created by m7_anohin_a on 12/1/2017.
  */
-public class DhlCourier extends Courier {
+public class DpdCourier extends Courier {
 
-    private String name = "DHL";
+    private String name = "DPD";
 
     @Override
     public BigDecimal determineDeliveryCosts(List<Item> item, Customer customer) {

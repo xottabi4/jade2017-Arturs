@@ -1,8 +1,9 @@
-package lv.vea.design.patterns.tasks.two.three.practice.order;
+package lv.vea.design.patterns.tasks.two.three.practice.shop.order;
 
 import lv.vea.design.patterns.tasks.two.three.practice.shop.Customer;
 import lv.vea.design.patterns.tasks.two.three.practice.shop.Item;
-import lv.vea.design.patterns.tasks.two.three.practice.delivary.Courier;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.delivary.Courier;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.order.state.OrderState;
 
 import java.util.List;
 
@@ -27,5 +28,10 @@ public class Order {
         this.customer = customer;
         this.items = items;
         this.courier = courier;
+    }
+
+    public void changeOrderState(OrderState orderState) {
+        orderState.notifyCustomer(customer);
+        this.orderState = orderState;
     }
 }

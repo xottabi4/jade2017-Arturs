@@ -1,4 +1,4 @@
-package lv.vea.design.patterns.tasks.two.three.practice;
+package lv.vea.design.patterns.tasks.two.three.practice.shop;
 
 import java.util.*;
 import java.util.Map.Entry;
@@ -15,7 +15,7 @@ public final class Shop {
 
     private Map<String, Boolean> watched = new HashMap<>();
 
-    boolean addItem(Item item) {
+    public boolean addItem(Item item) {
         if (items.add(item)) {
             resetWatched();
             return true;

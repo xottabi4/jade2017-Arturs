@@ -1,4 +1,4 @@
-package lv.vea.design.patterns.tasks.two.three.practice;
+package lv.vea.design.patterns.tasks.two.three.practice.shop;
 
 import java.math.BigDecimal;
 

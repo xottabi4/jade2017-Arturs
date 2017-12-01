@@ -1,11 +1,12 @@
-package lv.vea.design.patterns.tasks.two.three.practice;
+package lv.vea.design.patterns.tasks.two.three.practice.shop;
 
-import lv.vea.design.patterns.tasks.two.three.practice.delivary.Courier;
-import lv.vea.design.patterns.tasks.two.three.practice.delivary.CourierFactory;
-import lv.vea.design.patterns.tasks.two.three.practice.order.Order;
-import lv.vea.design.patterns.tasks.two.three.practice.order.OrderService;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.delivary.Courier;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.delivary.CourierFactory;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.order.Order;
+import lv.vea.design.patterns.tasks.two.three.practice.shop.order.OrderService;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,12 @@ public class ShoppingCart {
 
     private OrderService orderService;
 
+    private Customer customer;
+
     private Courier courier;
 
-    private List<Item> orderItems = new LinkedList<>();
+
+    private List<Item> itemsInCart = new LinkedList<>();
 
     public ShoppingCart(OrderService orderService) {
         this.orderService = orderService;
@@ -30,7 +34,7 @@ public class ShoppingCart {
      */
     public double calculateTotal(Customer customer) {
         BigDecimal total = BigDecimal.ZERO;
-        for (Item item : orderItems) {
+        for (Item item : itemsInCart) {
             total = total.add(item.getCost()
                     .multiply(new BigDecimal(item.getQuantity())));
         }
@@ -50,11 +54,11 @@ public class ShoppingCart {
     }
 
     public void removeItem(Item item) {
-        orderItems.remove(item);
+        itemsInCart.remove(item);
     }
 
     public void addItem(Item item) {
-        orderItems.add(item);
+        itemsInCart.add(item);
     }
 
     public void setCourier(String courier) {
@@ -79,7 +83,7 @@ public class ShoppingCart {
         } // TODO Add MasterCard and Visa services in the future
 
 //        create new order
-        Order order = new Order(customer, orderItems, courier);
+        Order order = new Order(customer, itemsInCart, courier);
 
 //        save order to DB using orderService
         orderService.saveOrder(order);
@@ -87,7 +91,16 @@ public class ShoppingCart {
 
 
     public Map<String, BigDecimal> viewDeliveryOptions() {
+        List<Courier> availableCouriers = CourierFactory.getAllAvailableCouriers();
 
-        return null;
+//        Map<String, BigDecimal> asd = availableCouriers.stream()
+//                .collect(Collectors.toMap(Courier::getName, new BigDecimal("")));
+
+        Map<String, BigDecimal> map = new HashMap<>();
+
+        for (Courier courier : availableCouriers) {
+            map.put(courier.getName(), courier.determineDeliveryCosts(itemsInCart, customer));
+        }
+        return map;
     }
 }
