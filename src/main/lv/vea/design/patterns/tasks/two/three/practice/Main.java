@@ -17,11 +17,12 @@ public class Main {
         Shop shop = new Shop();
         shop.addItem(new Item(2, "bla", new BigDecimal(9.4)));
 
-        System.out.println(shop.getAllItems(new Customer()).toString());
+        Customer me=new Customer();
+        System.out.println(shop.getAllItems(me).toString());
 
 
         //when customer found what he wan't to buy
-        ShoppingCart shoppingCart = new ShoppingCart(new OrderService());
+        ShoppingCart shoppingCart = new ShoppingCart(new OrderService(),me);
 
         Item item = shop.findItemByCode("bla");
         shoppingCart.addItem(item);
@@ -30,7 +31,7 @@ public class Main {
         //Customer sets courier that he want's to use
         shoppingCart.setCourier("DPD");
 
-
+        shoppingCart.pay("asd");
 
 
 //		Design Delivery service.

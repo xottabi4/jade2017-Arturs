@@ -22,8 +22,9 @@ public class ShoppingCart {
 
     private List<Item> itemsInCart = new LinkedList<>();
 
-    public ShoppingCart(OrderService orderService) {
+    public ShoppingCart(OrderService orderService, Customer customer) {
         this.orderService = orderService;
+        this.customer = customer;
     }
 
     /**
@@ -32,7 +33,7 @@ public class ShoppingCart {
      * @param customer - customer in question
      * @return total costs
      */
-    public double calculateTotal(Customer customer) {
+    public double calculateTotal() {
         BigDecimal total = BigDecimal.ZERO;
         for (Item item : itemsInCart) {
             total = total.add(item.getCost()
@@ -72,9 +73,9 @@ public class ShoppingCart {
      * @param customer - Customer in question
      * @param method   - Paying method string
      */
-    public void pay(Customer customer, String method) {
+    public void pay(String method) {
 
-        double amount = calculateTotal(customer);
+        double amount = calculateTotal();
 
         if (method.equalsIgnoreCase("PayPal")) {
             PayPalAccount acc = new PayPalAccount(customer);
